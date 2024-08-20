@@ -1,3 +1,4 @@
+import os
 import gradio as gr
 import torch
 from glob import glob
@@ -11,6 +12,10 @@ from utils.birefnet import load_birefnet_model, run_birefnet_infer
 # check gpu support
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {DEVICE}")
+
+# set home directory
+os.environ["HOME"] = os.path.expanduser("~")
+print(os.environ["HOME"])
 
 # load birefnet model
 birefnet_model = load_birefnet_model(DEVICE)
